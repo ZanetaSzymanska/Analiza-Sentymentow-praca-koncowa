@@ -1,4 +1,4 @@
-# Analiza-Sentymentow-praca-koncowa
+# Analiza-Sentymentow-praca-końcowa
 Analiza danych i sentymentów z mediów społecznościowych na przykładzie Twittera z wykorzystaniem narzędzi Big Data dostępnych na platformie Azure
 
 
