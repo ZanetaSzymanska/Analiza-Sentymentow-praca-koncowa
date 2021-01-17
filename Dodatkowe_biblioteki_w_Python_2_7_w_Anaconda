@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+sudo /usr/bin/anaconda/bin/pip  install findspark
+sudo /usr/bin/anaconda/bin/pip  install  wordcloud
+sudo /usr/bin/anaconda/bin/pip  install py4j
+mkdir /home/sshuser/gettweets
+chmod 777 /home/sshuser/gettweets
+cd /home/sshuser/gettweets
+hdfs dfs -put /home/sshuser/gettweets/tweets_pandemic_clean.csv /tutorials
+hdfs dfs -put /home/sshuser/gettweets/tweets_elections_USA_2020_clean.csv /tutorials
+hdfs dfs -get /tutorials/*.txt /home/sshuser/gettweets/
+hdfs dfs -get /tutorials/*.csv /home/sshuser/gettweets/
