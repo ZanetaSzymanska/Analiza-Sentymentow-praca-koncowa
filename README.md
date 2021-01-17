@@ -22,39 +22,24 @@ Dla pozostałych przetwarzań zostaje utworzony Pandas DataFrame za pomocą megi
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	Takiemu czyszczeniu poddawane są wszystkie tweety w pobranym zbiorze a następnie zapisane w pliku csv wraz z identyfikatorem posta i znacznikiem sentymentu, gdzie 0 oznacza nastrój negatywny a 1 to nastrój pozytywny.
-
-
-
-
-
-       3)  Metoda słownikowa analizy sentymentów
+	
+3)  Metoda słownikowa analizy sentymentów
        	Kolejna część prezentuje proste podejście do analizy sentymentów przy użyciu PySpark i DataFrame Spark. W tym celu należy zaimportować niezbędne biblioteki oraz uruchomić Spark SQL. Spark SQL to komponent znajdujący się w Spark Core, który ułatwia przetwarzanie danych ustrukturyzowanych i częściowo ustrukturyzowanych oraz integrację kilku formatów danych jako źródła (Hive, Parquet, JSON). Pozwala na transformację RDD za pomocą SQL (Structured Query Language). Aby uruchomić Spark SQL w swoim notesie należy utworzyć kontekst SQL.
        
-       Zostaje utworzony DataFrame Spark z wcześniej zapisanych danych w formacie csv.
-       inferSchema  zostaje ustawiony na na True , aby automatycznie wnioskować typy kolumn na podstawie danych. 
-       Z nowego DataFrame zostają usunięte puste wiersze i następuje przegląd negatywnyc , pozytywnych  postów i obliczenie średniej długości obu rodzaju tweetów. 
-       Do dalszej analizy jest dodany słownik z predefiniowanymi emocjami.
-       Słownik został utworzony na podstawie listy pozytywnych i negatywnych słów, które zostały znalezione na udostępnionym publicznym GitHub (https://github.com/sridharswamy/Twitter-Sentiment-Analysis-Using-Spark-Streaming-And-Kafka/tree/master/Dataset).
-       Słowa z tweetów są porównywane ze słowami z DataFrame a ich sentyment są porównywane. Zatem wyznaczone przez TextBlob sentymenty są porównywane ze słownikiem sentymentów i jest wyznaczana dokładność pomiaru sentymentów. 
+Zostaje utworzony DataFrame Spark z wcześniej zapisanych danych w formacie csv.
+inferSchema  zostaje ustawiony na na True , aby automatycznie wnioskować typy kolumn na podstawie danych. 
+Z nowego DataFrame zostają usunięte puste wiersze i następuje przegląd negatywnyc , pozytywnych  postów i obliczenie średniej długości obu rodzaju tweetów. 
+Do dalszej analizy jest dodany słownik z predefiniowanymi emocjami.
+Słownik został utworzony na podstawie listy pozytywnych i negatywnych słów, które zostały znalezione na udostępnionym publicznym GitHub (https://github.com/sridharswamy/Twitter-Sentiment-Analysis-Using-Spark-Streaming-And-Kafka/tree/master/Dataset).
+Słowa z tweetów są porównywane ze słowami z DataFrame a ich sentyment są porównywane. Zatem wyznaczone przez TextBlob sentymenty są porównywane ze słownikiem sentymentów i jest wyznaczana dokładność pomiaru sentymentów. 
        Do tego celu najlepiej posiadać taką samą liczbę badanej wartości w tym przypadku dokładności wyznaczania sentymentów. Zatem na początku ujednolicam liczbę postów pozytywnych i negatywnych do liczby tweetów ze mniejszego zbioru. Tak przygotowane dane poddaje ponownie procesowi tokenizacji (tym razem dla obiektu DataFrame Spark) .  Następnie zbiór słów zostaje porównany ze słownikiem , rozbijając podzielone słowa na różne wiersze za pomocą funkcji fn.explode i łącząc DataFrame’y. Poprzez średnią ocenę słów dla każdego tweeta i post zostaje sklasyfikowany jako „Pozytywny”, gdy średnia jest większa niż 0 i "Negatywny", jeśli jest mniejsza niż 0, a następnie obliczony zostaje wynik dokładności tej metody.
            
-           Tą metodę można nazwać metodą słownikową, która następnie porównamy z modelem regresji logistycznej.
-           
-           4.6. Prezentacja  wyników w postaci graficznej 
-           
-	Gdy tweety są już oczyszczone można przejść do kolejnego etapu analizy postów jakim jest wizualizacja i wyciąganie pierwszych wniosków. 
+   Tą metodę można nazwać metodą słownikową, która następnie porównamy z modelem regresji logistycznej.
+
+
+
+Gdy tweety są już oczyszczone można przejść do kolejnego etapu analizy postów jakim jest wizualizacja i wyciąganie pierwszych wniosków. 
 W tej cześći przedstawione są dwa wnioski :
 1. Do pierwszego zoobrazowania została użyta bibliotekia Wordcloud, aby zobaczyć częstotliwość słów zgodnie z kolumną tweet. Wykorzystana została bilinearna metoda interpolacji, aby zwiększyć płynność tekstu w chmurze.
 
@@ -63,7 +48,7 @@ W tej cześći przedstawione są dwa wnioski :
 
 
 
-           4.7. Implementacja uczenia maszynowego dla klasyfikacji textu przy użyciu Pyspark ML
+   4.7. Implementacja uczenia maszynowego dla klasyfikacji textu przy użyciu Pyspark ML
 
 	W tej czeście będzie wykorzystywane metody z następujących bibliotek:
 – pyspark.ml
