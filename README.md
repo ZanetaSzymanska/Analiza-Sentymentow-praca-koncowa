@@ -1,3 +1,8 @@
+
+## **Analiza danych i sentymentów z mediów społecznościowych na przykładzie Twittera z wykorzystaniem narzędzi Big Data dostępnych na platformie Azure4.  Implementacja**
+
+**4.  Implementacja**
+
 **4.1. Tworzenie klastra HDInsight Spark w Azure**
 
 `	`Implementacja projektu rozpoczyna się od stworzenia klastra HDInsight Spark w Azure Cloud.  Aby utworzyć taki klaster niezbędne jest podanie następujących informacji:
